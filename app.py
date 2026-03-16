@@ -196,8 +196,12 @@ def add_patient():
             "name": request.form.get("name"),
             "age": request.form.get("age"),
             "blood_pressure": request.form.get("blood_pressure"),
-            "cholesterol": request.form.get("cholesterol")
-        }
+            "cholesterol": request.form.get("cholesterol"),
+            "fasting_blood_sugar": request.form.get("fasting_blood_sugar"),
+            "resting_ecg": request.form.get("resting_ecg"),
+            "exercise_angina": request.form.get("exercise_angina")
+
+             }
 
         patients_collection.insert_one(patient)
 
@@ -229,7 +233,10 @@ def edit_patient(id):
                 "name": request.form.get("name"),
                 "age": request.form.get("age"),
                 "blood_pressure": request.form.get("blood_pressure"),
-                "cholesterol": request.form.get("cholesterol")
+                "cholesterol": request.form.get("cholesterol"),
+                "fasting_blood_sugar": request.form.get("fasting_blood_sugar"),
+                "resting_ecg": request.form.get("resting_ecg"),
+                "exercise_angina": request.form.get("exercise_angina")
             }}
         )
 
