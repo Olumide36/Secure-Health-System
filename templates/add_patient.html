@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Patient</title>
+</head>
+
+<body>
+
+<h1>Add Patient Record</h1>
+
+<form method="POST">
+
+<label>Select Patient</label><br>
+
+<select name="owner">
+
+{% for p in patients %}
+<option value="{{p[0]}}">{{p[0]}}</option>
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<label>Name</label><br>
+<input type="text" name="name" required>
+
+<br><br>
+
+<label>Age</label><br>
+<input type="number" name="age" required>
+
+<br><br>
+
+<label>Blood Pressure</label><br>
+<input type="text" name="blood_pressure">
+
+<br><br>
+
+<label>Cholesterol</label><br>
+<input type="text" name="cholesterol">
+
+<br><br>
+
+<button type="submit">Save Patient</button>
+
+</form>
+
+<br>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

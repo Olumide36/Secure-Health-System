@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit Patient</title>
+</head>
+
+<body>
+
+<h1>Edit Patient</h1>
+
+<form method="POST">
+
+Name<br>
+<input type="text" name="name" value="{{patient.name}}">
+<br><br>
+
+Age<br>
+<input type="number" name="age" value="{{patient.age}}">
+<br><br>
+
+Blood Pressure<br>
+<input type="text" name="blood_pressure" value="{{patient.blood_pressure}}">
+<br><br>
+
+Cholesterol<br>
+<input type="text" name="cholesterol" value="{{patient.cholesterol}}">
+<br><br>
+
+<button type="submit">Update</button>
+
+</form>
+
+<br>
+
+<a href="/dashboard">Back</a>
+
+</body>
+</html>

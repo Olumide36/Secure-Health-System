@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Medical Record</title>
+</head>
+
+<body>
+
+<h1>My Medical Record</h1>
+
+<table border="1">
+
+<tr>
+<th>Name</th>
+<th>Age</th>
+<th>Blood Pressure</th>
+<th>Cholesterol</th>
+</tr>
+
+{% for p in patients %}
+
+<tr>
+<td>{{p.name}}</td>
+<td>{{p.age}}</td>
+<td>{{p.blood_pressure}}</td>
+<td>{{p.cholesterol}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>
