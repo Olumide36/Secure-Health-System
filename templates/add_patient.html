@@ -1,54 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Add Patient</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<h1>Add Patient Record</h1>
+<div class="card p-4 shadow">
+    <h3 class="mb-4">Add Patient</h3>
 
-<form method="POST">
+    <form method="POST">
 
-<label>Select Patient</label><br>
+        <div class="row">
 
-<select name="owner">
+            <div class="col-md-6 mb-3">
+                <label>Name</label>
+                <input name="name" class="form-control">
+            </div>
 
-{% for p in patients %}
-<option value="{{p[0]}}">{{p[0]}}</option>
-{% endfor %}
+            <div class="col-md-3 mb-3">
+                <label>Age</label>
+                <input name="age" type="number" class="form-control">
+            </div>
 
-</select>
+            <div class="col-md-3 mb-3">
+                <label>Cholesterol</label>
+                <input name="cholesterol" class="form-control">
+            </div>
 
-<br><br>
+            <div class="col-md-4 mb-3">
+                <label>Blood Pressure</label>
+                <input name="blood_pressure" class="form-control">
+            </div>
 
-<label>Name</label><br>
-<input type="text" name="name" required>
+            <div class="col-md-4 mb-3">
+                <label>Blood Sugar</label>
+                <select name="fasting_blood_sugar" class="form-control">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
 
-<br><br>
+            <div class="col-md-4 mb-3">
+                <label>ECG</label>
+                <select name="resting_ecg" class="form-control">
+                    <option>Normal</option>
+                    <option>Abnormal</option>
+                </select>
+            </div>
 
-<label>Age</label><br>
-<input type="number" name="age" required>
+        </div>
 
-<br><br>
+        <button class="btn btn-success">Save</button>
 
-<label>Blood Pressure</label><br>
-<input type="text" name="blood_pressure">
+    </form>
 
-<br><br>
+</div>
 
-<label>Cholesterol</label><br>
-<input type="text" name="cholesterol">
-
-<br><br>
-
-<button type="submit">Save Patient</button>
-
-</form>
-
-<br>
-
-<a href="/dashboard">Back to Dashboard</a>
-
-</body>
-</html>
+{% endblock %}

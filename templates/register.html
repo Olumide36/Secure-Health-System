@@ -1,38 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Create Account</title>
+    <title>Register</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #0d6efd, #198754);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            border-radius: 15px;
+            width: 400px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn {
+            border-radius: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>Create Account</h1>
+<div class="card shadow p-4">
 
-<form method="POST">
+    <h3 class="text-center mb-3">Create Account</h3>
+    <p class="text-center text-muted">Register to access the system</p>
 
-<label>Email</label><br>
-<input type="email" name="username" required>
-<br><br>
+    <form method="POST">
 
-<label>Password</label><br>
-<input type="password" name="password" required>
-<br><br>
+        <div class="mb-3">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
 
-<label>Role</label><br>
-<select name="role">
-<option value="patient">Patient</option>
-<option value="clinician">Clinician</option>
-</select>
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
 
-<br><br>
+        <div class="mb-3">
+            <label>Role</label>
+            <select name="role" class="form-control" required>
+                <option value="patient">Patient</option>
+                <option value="clinician">Clinician</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
 
-<button type="submit">Register</button>
+        <button class="btn btn-primary w-100">Register</button>
 
-</form>
+    </form>
 
-<br>
+    <p class="text-center mt-3">
+        Already have an account?
+        <a href="/">Login</a>
+    </p>
 
-<a href="/">Back to login</a>
+</div>
 
 </body>
 </html>

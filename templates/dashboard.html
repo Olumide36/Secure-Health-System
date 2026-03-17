@@ -1,144 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Healthcare Dashboard</title>
+{% extends "base.html" %}
 
-<style>
+{% block content %}
 
-body{
-font-family: Arial;
-background:#f4f6f9;
-}
+<h3 class="mb-3">Dashboard</h3>
 
-.container{
-width:80%;
-margin:auto;
-}
+<a href="/add_patient" class="btn btn-success mb-3">+ Add Patient</a>
 
-table{
-width:100%;
-border-collapse: collapse;
-margin-top:20px;
-}
+<table class="table table-hover text-center">
+    <thead class="table-success">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>BP</th>
+            <th>Cholesterol</th>
+            <th>Blood Sugar</th>
+            <th>ECG</th>
+            <th>Angina</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 
-th, td{
-border:1px solid #ccc;
-padding:10px;
-text-align:center;
-}
-
-th{
-background:#007BFF;
-color:white;
-}
-
-.button{
-padding:6px 12px;
-background:#28a745;
-color:white;
-text-decoration:none;
-border-radius:4px;
-margin-right:5px;
-}
-
-.edit{
-background:#ffc107;
-color:black;
-}
-
-.delete{
-background:#dc3545;
-}
-
-.top-buttons{
-margin-top:20px;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-<h1>Healthcare System Dashboard</h1>
-
-<p><b>Logged in as:</b> {{user}}</p>
-<p><b>Role:</b> {{role}}</p>
-
-<div class="top-buttons">
-
-{% if role == "clinician" or role == "admin" %}
-<a class="button" href="/add_patient">Add Patient</a>
-{% endif %}
-
-{% if role == "patient" %}
-<a class="button" href="/view_record">View My Record</a>
-{% endif %}
-
-<a class="button" href="/logout">Logout</a>
-
-</div>
-
-<br>
-
-{% if role == "clinician" or role == "admin" %}
-
-<form method="POST">
-
-<input type="text" name="search" placeholder="Search patient name">
-
-<button type="submit">Search</button>
-
-</form>
-
-{% endif %}
-
-<h2>Patient Records</h2>
-
-<table>
-
-<tr>
-<th>Name</th>
-<th>Age</th>
-<th>Blood Pressure</th>
-<th>Cholesterol</th>
-
-{% if role == "clinician" or role == "admin" %}
-<th>Actions</th>
-{% endif %}
-
-</tr>
-
-{% for p in patients %}
-
-<tr>
-
-<td>{{p.name}}</td>
-<td>{{p.age}}</td>
-<td>{{p.blood_pressure}}</td>
-<td>{{p.cholesterol}}</td>
-
-{% if role == "clinician" or role == "admin" %}
-
-<td>
-
-<a class="button edit" href="/edit_patient/{{p._id}}">Edit</a>
-
-<a class="button delete" href="/delete_patient/{{p._id}}">Delete</a>
-
-</td>
-
-{% endif %}
-
-</tr>
-
-{% endfor %}
-
+    <tbody>
+    {% for p in patients %}
+        <tr>
+            <td>{{ p["name"] }}</td>
+            <td>{{ p["age"] }}</td>
+            <td>{{ p["blood_pressure"] }}</td>
+            <td>{{ p["cholesterol"] }}</td>
+            <td>
+                <span class="badge bg-{{ 'success' if p['fasting_blood_sugar']=='Yes' else 'secondary' }}">
+                    {{ p["fasting_blood_sugar"] }}
+                </span>
+            </td>
+            <td>{{ p["resting_ecg"] }}</td>
+            <td>
+                <span class="badge bg-{{ 'danger' if p['exercise_angina']=='Yes' else 'success' }}">
+                    {{ p["exercise_angina"] }}
+                </span>
+            </td>
+            <td>
+                <a href="/edit_patient/{{ p['_id'] }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/delete_patient/{{ p['_id'] }}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
 </table>
 
-</div>
-
-</body>
-</html>
+{% endblock %}

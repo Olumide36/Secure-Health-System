@@ -1,30 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login</title>
+    <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #198754, #0d6efd);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            border-radius: 15px;
+            width: 350px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn {
+            border-radius: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>Secure Healthcare System</h1>
+<div class="card shadow p-4">
 
-<h2>Login</h2>
+    <h3 class="text-center mb-3">Healthcare System</h3>
+    <p class="text-center text-muted">Login to continue</p>
 
-<form action="/login" method="POST">
+    <form method="POST" action="/login">
 
-<input type="text" name="username" placeholder="Username" required>
-<br><br>
+        <div class="mb-3">
+            <label>Username</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
 
-<input type="password" name="password" placeholder="Password" required>
-<br><br>
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
 
-<button type="submit">Login</button>
+        <button class="btn btn-success w-100">Login</button>
 
-</form>
+    </form>
 
-<br>
+    <p class="text-center mt-3">
+        Don’t have an account?
+        <a href="/register">Create one</a>
+    </p>
 
-<a href="/register">Create an account</a>
+</div>
 
 </body>
 </html>
