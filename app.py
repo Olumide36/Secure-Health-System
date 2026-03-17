@@ -40,7 +40,7 @@ client = MongoClient(MONGO_URI)
 db = client["healthcare"]
 
 patients_collection = db["patients"]
-
+appointments_collection =["appointments"]
 
 # -----------------------------
 # Home
