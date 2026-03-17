@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card p-4 shadow">
+    <h3>Book Appointment</h3>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Date</label>
+            <input type="date" name="date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Time</label>
+            <input type="time" name="time" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label>Reason</label>
+            <textarea name="reason" class="form-control"></textarea>
+        </div>
+
+        <button class="btn btn-success">Book</button>
+
+    </form>
+</div>
+
+{% endblock %}

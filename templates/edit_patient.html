@@ -1,38 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Edit Patient</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<h1>Edit Patient</h1>
+<div class="card p-4 shadow">
+    <h3 class="mb-4">Edit Patient</h3>
 
-<form method="POST">
+    <form method="POST">
 
-Name<br>
-<input type="text" name="name" value="{{patient.name}}">
-<br><br>
+        <div class="row">
 
-Age<br>
-<input type="number" name="age" value="{{patient.age}}">
-<br><br>
+            <div class="col-md-6 mb-3">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control"
+                       value="{{ patient['name'] }}">
+            </div>
 
-Blood Pressure<br>
-<input type="text" name="blood_pressure" value="{{patient.blood_pressure}}">
-<br><br>
+            <div class="col-md-3 mb-3">
+                <label>Age</label>
+                <input type="number" name="age" class="form-control"
+                       value="{{ patient['age'] }}">
+            </div>
 
-Cholesterol<br>
-<input type="text" name="cholesterol" value="{{patient.cholesterol}}">
-<br><br>
+            <div class="col-md-3 mb-3">
+                <label>Cholesterol</label>
+                <input type="number" name="cholesterol" class="form-control"
+                       value="{{ patient['cholesterol'] }}">
+            </div>
 
-<button type="submit">Update</button>
+            <div class="col-md-4 mb-3">
+                <label>Blood Pressure</label>
+                <input type="text" name="blood_pressure" class="form-control"
+                       value="{{ patient['blood_pressure'] }}">
+            </div>
 
-</form>
+            <div class="col-md-4 mb-3">
+                <label>Fasting Blood Sugar</label>
+                <select name="fasting_blood_sugar" class="form-control">
+                    <option {{ 'selected' if patient['fasting_blood_sugar']=='Yes' else '' }}>Yes</option>
+                    <option {{ 'selected' if patient['fasting_blood_sugar']=='No' else '' }}>No</option>
+                </select>
+            </div>
 
-<br>
+            <div class="col-md-4 mb-3">
+                <label>Resting ECG</label>
+                <select name="resting_ecg" class="form-control">
+                    <option {{ 'selected' if patient['resting_ecg']=='Normal' else '' }}>Normal</option>
+                    <option {{ 'selected' if patient['resting_ecg']=='Abnormal' else '' }}>Abnormal</option>
+                </select>
+            </div>
 
-<a href="/dashboard">Back</a>
+            <div class="col-md-4 mb-3">
+                <label>Exercise Angina</label>
+                <select name="exercise_angina" class="form-control">
+                    <option {{ 'selected' if patient['exercise_angina']=='Yes' else '' }}>Yes</option>
+                    <option {{ 'selected' if patient['exercise_angina']=='No' else '' }}>No</option>
+                </select>
+            </div>
 
-</body>
-</html>
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-success">Update</button>
+            <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

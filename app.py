@@ -215,6 +215,79 @@ def add_patient():
 
 
 # -----------------------------
+# Book appointment
+# -----------------------------
+@app.route("/book_appointment", methods=["GET","POST"])
+def book_appointment():
+
+    if "user" not in session:
+        return redirect(url_for("home"))
+
+    if session["role"] != "patient":
+        return "Access Forbidden"
+
+    if request.method == "POST":
+
+        appointment = {
+            "patient": session["user"],
+            "date": request.form.get("date"),
+            "time": request.form.get("time"),
+            "reason": request.form.get("reason"),
+            "status": "Pending"
+        }
+
+        appointments_collection.insert_one(appointment)
+
+        return redirect(url_for("my_appointments"))
+
+    return render_template("book_appointment.html")
+
+
+# --------------------------------
+# Patient view their appointment
+# --------------------------------
+@app.route("/my_appointments")
+def my_appointments():
+
+    if session["role"] != "patient":
+        return "Access Forbidden"
+
+    appointments = list(
+        appointments_collection.find({"patient": session["user"]})
+    )
+
+    return render_template("my_appointments.html", appointments=appointments)
+
+
+# -----------------------------
+# Add/clinician view all
+# -----------------------------
+@app.route("/appointments")
+def appointments():
+
+    if session["role"] not in ["admin","clinician"]:
+        return "Access Forbidden"
+
+    appointments = list(appointments_collection.find())
+
+    return render_template("appointments.html", appointments=appointments)
+
+
+# -----------------------------
+# Edit patient
+# -----------------------------
+@app.route("/update_appointment/<id>/<status>")
+def update_appointment(id, status):
+
+    appointments_collection.update_one(
+        {"_id": ObjectId(id)},
+        {"$set": {"status": status}}
+    )
+
+    return redirect(url_for("appointments"))
+
+
+# -----------------------------
 # Edit patient
 # -----------------------------
 @app.route("/edit_patient/<id>", methods=["GET","POST"])

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>My Appointments</h3>
+
+<table class="table">
+    <thead class="table-success">
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Reason</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for a in appointments %}
+        <tr>
+            <td>{{ a["date"] }}</td>
+            <td>{{ a["time"] }}</td>
+            <td>{{ a["reason"] }}</td>
+            <td>
+                <span class="badge bg-warning">{{ a["status"] }}</span>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

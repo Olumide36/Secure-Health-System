@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>All Appointments</h3>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>Patient</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for a in appointments %}
+        <tr>
+            <td>{{ a["patient"] }}</td>
+            <td>{{ a["date"] }}</td>
+            <td>{{ a["time"] }}</td>
+            <td>{{ a["reason"] }}</td>
+            <td>{{ a["status"] }}</td>
+            <td>
+                <a href="/update_appointment/{{a['_id']}}/Approved" class="btn btn-success btn-sm">Approve</a>
+                <a href="/update_appointment/{{a['_id']}}/Completed" class="btn btn-primary btn-sm">Complete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
