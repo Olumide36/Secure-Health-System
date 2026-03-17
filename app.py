@@ -192,7 +192,7 @@ def add_patient():
     if request.method == "POST":
 
         patient = {
-            "owner": request.form.get("owner"),
+            "owner": request.form.get("user"),
             "name": request.form.get("name"),
             "age": request.form.get("age"),
             "blood_pressure": request.form.get("blood_pressure"),
@@ -223,10 +223,11 @@ def book_appointment():
     if "user" not in session:
         return redirect(url_for("home"))
 
-    if session["role"] != "patient":
-        return "Access Forbidden"
-
     if request.method == "POST":
+
+        print("FORM:", request.form)
+        print("USER:", session.get("user"))
+
 
         appointment = {
             "patient": session["user"],
@@ -236,8 +237,9 @@ def book_appointment():
             "status": "Pending"
         }
 
-        appointments_collection.insert_one(appointment)
-
+        result = appointments_collection.insert_one(appointment)
+        print("INSERTED:", result.inserted_id)
+         
         return redirect(url_for("my_appointments"))
 
     return render_template("book_appointment.html")
@@ -274,7 +276,7 @@ def appointments():
 
 
 # -----------------------------
-# Edit patient
+# Update appointment status
 # -----------------------------
 @app.route("/update_appointment/<id>/<status>")
 def update_appointment(id, status):
